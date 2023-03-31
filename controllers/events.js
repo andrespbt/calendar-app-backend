@@ -41,7 +41,7 @@ const updateEvent = async (req, res = response) => {
     if (!event) res.status(404).json({ ok: false, msg: 'Event not found' });
 
     if (event.user.toString() !== uid)
-      return res.status(401).json({ ok: false, msg: 'Not have permission to update this event' });
+      return res.status(401).json({ ok: false, msg: "You don't have permission to update this event" });
 
     const newEvent = { ...req.body, user: uid };
 
@@ -70,7 +70,7 @@ const deleteEvent = async (req, res = response) => {
     if (!event) res.status(404).json({ ok: false, msg: 'Event not found' });
 
     if (event.user.toString() !== uid)
-      return res.status(401).json({ ok: false, msg: 'Not have permission to delete this event' });
+      return res.status(401).json({ ok: false, msg: "You don't have permission to delete this event" });
 
     const deletedEvent = await Event.findByIdAndDelete(eventId);
 
